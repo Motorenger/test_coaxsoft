@@ -1,0 +1,21 @@
+{% extends '_base.html' %}
+
+{% block content %}
+
+    <form action="/" id="orderForm">
+        {{ form.as_p }}
+        <input  type="submit" class="btn btn-success" value="Order">
+    </form>
+
+    <script>
+    // Attach a submit handler to the form
+    $( "#orderForm" ).submit(function( event ) {
+    
+    // Stop form from submitting normally
+    event.preventDefault();
+    // Send the data using post
+    $.post( $(location).attr('href'), $( "#orderForm" ).serialize() );
+    });
+</script>
+
+{% endblock content %}

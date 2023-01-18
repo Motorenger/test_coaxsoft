@@ -1,0 +1,21 @@
+{% extends '_base.html' %}
+
+{% block content %}
+    <p>Filter by categories</p>
+    {% for category in categories %}
+    <ul>
+        <li><a href="{% url 'products:products_list' %}?category={{category}}">{{category}}</a></li>
+
+    </ul>
+    {% endfor %}
+    <p>---</p>
+    {% for product in products  %}
+    <ul>
+        <li>{{product.name}}</li>
+        <li>{{product.category}}</li>
+        <li>{{product.user}}</li>
+        <li>{{product.price}}</li>
+    </ul>
+    <p>---</p>
+    {% endfor %}
+{% endblock content %}

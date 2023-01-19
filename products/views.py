@@ -47,17 +47,18 @@ class ProductOrderHTMLView(generic.edit.FormView):
         return HttpResponseRedirect(reverse('products:products_list'))
 
 
-class UserCountView(APIView):
-    """
-    A view that returns the count of active users in JSON.
-    """
-    renderer_classes = [TemplateHTMLRenderer, JSONRenderer]
+class ProductOrderJQUERYView(APIView):
+    renderer_classes = [TemplateHTMLRenderer]
 
     def get(self, request, pk):
         form = OrderForm()
         return Response({'form': form}, template_name='products/order_product_jquery.html')
 
     def post(self, request, pk):
-        print(self.POST)
-        print(self.data)
+        product = get_object_or_404(Products, id=pk)
+        data = OrderSerializer(data=request.data, partial=True)
 
+        if data.is_valid():
+            data.save(product_name=product.name, category=product.category, price=product.price)
+
+        return HttpResponseRedirect(reverse('products:products_list'))

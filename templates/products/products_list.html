@@ -15,7 +15,7 @@
         <li>{{product.user}}</li>
         <li>{{product.price}}</li>
         <a class="btn btn-secondary" href="{% url 'products:product_order_html' product.id %}">Order(HTML)</a>
-        <a class="btn btn-secondary" href="{% url 'products:product_order_jquery_form' product.id %}">Order(jQuery)</a>
+        <a class="btn btn-secondary" href="{% url 'products:product_order_jquery' product.id %}">Order(jQuery)</a>
     </ul>
     <p>---</p>
     {% endfor %}

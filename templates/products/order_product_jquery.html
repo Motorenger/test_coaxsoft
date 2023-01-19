@@ -2,7 +2,8 @@
 
 {% block content %}
 
-    <form action="/" id="orderForm">
+    <form id="orderForm">
+        {% csrf_token %}
         {{ form.as_p }}
         <input  type="submit" class="btn btn-success" value="Order">
     </form>
@@ -14,7 +15,7 @@
     // Stop form from submitting normally
     event.preventDefault();
     // Send the data using post
-    $.post( $(location).attr('href'), $( "#orderForm" ).serialize() );
+    $.post( $(location).attr('href'), $( "#orderForm" ).serialize(), "json");
     });
 </script>
 
